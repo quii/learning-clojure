@@ -140,3 +140,18 @@ Clojure notes. Gathered from links below and "Programming Clojure"
 ; Side effects with do. do takes any number of forms and returns the last one
 
 (if true (do (println "yes") 123))
+
+; loop works like let, establishing bindings and then evaulating expressions
+
+; Loop with an empty array and 5. If 5 is zero then return array otherwise
+; recur calls the loop back with x added to result array and decrementing x
+(loop [result [], x 5]
+  (if (zero? x) result
+      (recur (conj result x) (dec x))))
+
+; However clojure has abstractions on collections you'd expect
+(into [] (take 5 (iterate dec 5)))
+
+; Dont run me! I will iterate forever
+(println (iterate dec 5))
+
