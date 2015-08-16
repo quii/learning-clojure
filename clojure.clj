@@ -8,7 +8,7 @@ Clojure notes. Gathered from links below and "Programming Clojure"
 
 ;; Calling functions is uniform compared to other languages with the list syntax, first argument is the function and the rest are arguments)
 
-(= “boo”, “bum)
+(= "boo", "bum")
 (apply + [1,2,3])
 
 ;; Contrast this to other languages. Why is concat("foo", "bar") and 1 + 2 acceptable when you think about it?
