@@ -119,3 +119,24 @@ Clojure notes. Gathered from links below and "Programming Clojure"
 
 ; You can also destructure collections
 (let [[x y _ z] [1 2 3 4 5]] [x y z])
+
+; docs
+(find-doc "ns-")
+
+; java
+(def rnd (new java.util.Random))
+
+ ; obvious in a way, '.' is a function on class instances
+(println (. rnd nextInt))
+
+; static calls
+(. Math PI)
+
+; if 
+(if true (println "YES!") (println "NO :("))
+
+; if you dont supply the else part (3rd arg) and the 1st arg resolves to false then it returns nil
+
+; Side effects with do. do takes any number of forms and returns the last one
+
+(if true (do (println "yes") 123))
