@@ -1,20 +1,5 @@
 (comment
 Clojure notes. Gathered from links below and "Programming Clojure"
-
-- Uniform syntax.
-- Code is data
-- Immutablility encouraged
-- [http://learnxinyminutes.com/docs/clojure/]
-- [http://www.4clojure.com/problem/8#prob-title]
-- [http://www.braveclojure.com/]
-- Revenge of the nerds http://www.paulgraham.com/icad.html
-
-Why lisp? (all from the book)
-- Enables meta programming (macros). Reprogram the language. You freaks. 
-- "Sometimes you want to change what words mean"
-  - "Redefine private to mean private for production but public for dev" (eugh, really?)
-  - "Redefine class to provide callback hooks for life-cycle events, for eg an event on creation"
-- "Millions of lines of code written around missing language features"
 )
 
 ;; Strings

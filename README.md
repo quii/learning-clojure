@@ -2,10 +2,28 @@
 
 This is my workflow for learning both emacs and clojure
 
-- All editing and repl work down in emacs
+- All editing, git and repl work done in emacs
 - Learn snippets and execute them in repl, dumping what i find interesting into clojure.clj
 - Any wordy notes about clojure in here
 - A little every day is better than a lot every 2 weeks
+
+## Why Clojure?
+
+- Uniform syntax.
+- Code is data
+- Immutablility encouraged
+- [http://learnxinyminutes.com/docs/clojure/]
+- [http://www.4clojure.com/problem/8#prob-title]
+- [http://www.braveclojure.com/]
+- Revenge of the nerds http://www.paulgraham.com/icad.html
+
+### Why lisp? (all from the book)
+- Enables meta programming (macros). Reprogram the language. You freaks. 
+- "Sometimes you want to change what words mean"
+- "Redefine private to mean private for production but public for dev" (eugh, really?)
+- "Redefine class to provide callback hooks for life-cycle events, for eg an event on creation"
+- "Millions of lines of code written around missing language features"
+
 
 ## Writing clojure in emacs
 
