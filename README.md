@@ -12,9 +12,9 @@ This is my workflow for learning both emacs and clojure
 - Uniform syntax.
 - Code is data
 - Immutablility encouraged
-- [http://learnxinyminutes.com/docs/clojure/]
-- [http://www.4clojure.com/problem/8#prob-title]
-- [http://www.braveclojure.com/]
+- http://learnxinyminutes.com/docs/clojure/
+- http://www.4clojure.com/problem/8#prob-title
+- http://www.braveclojure.com/
 - Revenge of the nerds http://www.paulgraham.com/icad.html
 
 ### Why lisp? (all from the book)
