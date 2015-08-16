@@ -155,3 +155,7 @@ Clojure notes. Gathered from links below and "Programming Clojure"
 ; Dont run me! I will iterate forever
 (println (iterate dec 5))
 
+; metadata
+
+(defn ^{:tag String} shout [^{:tag String} s] (.toUpperCase s))
+; (meta #`shout)
