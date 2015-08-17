@@ -90,6 +90,23 @@ Clojure notes. Gathered from links below and "Programming Clojure"
 (interpose "," ["Chris" "Ruth" "Simon"])
 (apply str (interpose ", " ["Chris", "Ruth"]))
 
+;; some more collection functions
+
+(drop-while #(< % 5) [3 4 5 6 7 8])
+(every? #(< % 5) [1 2 3])
+(some even? [2 4 6])
+; see also not-every? not-any?
+
+
+(map #(str "Hello, " % "!") `("Chris" "Ed" "Rob"))
+(map (partial + 2) [1 2 3])
+
+(mapcat #(list % %) `(1 2 3)) ;; flatmap - notice you need the "constructor" version of the collection creation
+
+(filter #(= "Ed" %) `("Chris" "Ed" "Rob")) ;; returns Ed
+
+(reduce + [1 2 3 4])
+
 ;; Vectors
 
 [1 2 3]
@@ -110,16 +127,6 @@ Clojure notes. Gathered from links below and "Programming Clojure"
 ({:a 10, :b 20, :c 30} :b) ;; 20
 (get {:chris 31} :chris 123)
 (get {:chris 31} :bob 123) ;; defaults to 123 when not found
-
-(conj {:chris 31 :ruth 30} [:stu 28] [:bob 70]) ;; conj also adds to maps
-
-
-;; some collection functions
-
-(map #(str "Hello, " % "!") `("Chris" "Ed" "Rob"))
-(map (partial + 2) [1 2 3])
-(mapcat #(list % %) `(1 2 3)) ;; flatmap - notice you need the "constructor" version of the collection creation
-(filter #(= "Ed" %) `("Chris" "Ed" "Rob")) ;; returns Ed
 
 ;; records
 
