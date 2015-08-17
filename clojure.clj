@@ -185,6 +185,12 @@ Clojure notes. Gathered from links below and "Programming Clojure"
 
 (if true (do (println "yes") 123))
 
+; cond
+
+(let [x (fn [x]
+          (cond (= x 0) "is 0" (= x 1) "is 1" :else "is something else"))]
+  (x 1))
+
 ; loop works like let, establishing bindings and then evaulating expressions
 
 ; Loop with an empty array and 5. If 5 is zero then return array otherwise
