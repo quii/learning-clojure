@@ -49,9 +49,46 @@ Clojure notes. Gathered from links below and "Programming Clojure"
 [20 30 40]
 (seq [10, 20])
 (= [1 2] (rest [0 1 2])) ;; for scala people, rest = tail
+
 (first [10 20 30])
+(first {:name "Chris" :age 10}) ; returns age, interestingly
+
 (second [10 20 30])
 (last [10 20 30])
+
+(cons 1 [2 3 4])
+(cons {:new-field "Blah"} {:x "y"})
+
+(next [1 2 3 4])
+
+(sorted-set 50 2 10 1)
+
+; these insert efficiently, for a list it will add to the beginning and for a vector the end
+(conj [1 2] 3 4)
+(into [1 2] [3 4])
+
+;; Ranges
+
+(range 10)
+(range 5 10)
+(range 0 10 3)
+
+(take 2 [1 2 3 4 5 6 7 8 9])
+(take 5 (iterate inc 1))
+
+; When repeat is called with one argument it returns a lazy infinite sequence
+(take 5 (repeat "Chris rules"))
+
+; If you define a second arg then it doesnt
+(repeat 5 10)
+
+; Cycle takes a collection and cycles through it infinitely
+(take 5 (cycle [1 2]))
+
+(interleave [1 2 3] ["A" "B" "C"])
+
+(interpose "," ["Chris" "Ruth" "Simon"])
+(apply str (interpose ", " ["Chris", "Ruth"]))
 
 ;; Vectors
 
@@ -152,10 +189,8 @@ Clojure notes. Gathered from links below and "Programming Clojure"
 ; However clojure has abstractions on collections you'd expect
 (into [] (take 5 (iterate dec 5)))
 
-; Dont run me! I will iterate forever
-(println (iterate dec 5))
-
 ; metadata
 
 (defn ^{:tag String} shout [^{:tag String} s] (.toUpperCase s))
 ; (meta #`shout)
+
