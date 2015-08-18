@@ -14,8 +14,10 @@ Clojure notes. Gathered from links below and "Programming Clojure"
 ;; Contrast this to other languages. Why is concat("foo", "bar") and 1 + 2 acceptable when you think about it?
 
 ;; Creating functions
+(defn add-five [x] (+ x 5))
+(add-five 5)
 
-((fn add-five [x] (+ x 5)) 3) ;; can only use add-five in the context of the block, i think? (need to figure this out)
+((fn add-five [x] (+ x 5)) 3) ;; can only use add-five in the context of this form
 ((fn [x] (+ x 5)) 3) ;; you dont have to give a name to the function
 
 (#(+ % 5) 3) ;; sugar for above
@@ -23,14 +25,19 @@ Clojure notes. Gathered from links below and "Programming Clojure"
 
 ((partial + 5) 3)
 
-;; Creating documented functions that you can call
-
+;; Creating documented functions
 (defn greeting "Greets you" [name] (str "Hello, " name))
 (doc greeting)
 (greeting "Chris")
 
-;; Composing functions
+;; Arity
+(defn harrity
+  ([x] (println "One arg"))
+  ([x y] (println "Two args"))
+  ([x y z] (println "Three args"))
+  ([x y z & otherargs] (println otherargs)))
 
+;; Composing functions
 (defn x [a] (+ a 1))
 (defn y [a] (+ a 2))
 
@@ -39,12 +46,10 @@ Clojure notes. Gathered from links below and "Programming Clojure"
 (defn z [a] (-> a x y))
 
 ;; Lists
-
 (list 1 2)
 `(1 2)
 
 ;; Sequences
-
 [20 30 40]
 (seq [10, 20])
 (= [1 2] (rest [0 1 2])) ;; for scala people, rest = tail
@@ -189,6 +194,8 @@ failed-movie-titles
 ; if 
 (if true (println "YES!") (println "NO :("))
 
+; it's worth noting that if is a "special form" because it doesn't evaulate all it's arguments recursively like normal forms (i.e we dont print NO in this case
+
 ; if you dont supply the else part (3rd arg) and the 1st arg resolves to false then it returns nil. You can check for nil with nil?
 (nil? (if false 10))
 
@@ -197,6 +204,9 @@ failed-movie-titles
 
 ; when is if without an else
 (when true (println "Howdy"))
+
+; this will return a function, just to show you can
+((or + -) 2 2 2 )
 
 ; cond
 
@@ -219,4 +229,3 @@ failed-movie-titles
 
 (defn ^{:tag String} shout [^{:tag String} s] (.toUpperCase s))
 ; (meta #`shout)
-
