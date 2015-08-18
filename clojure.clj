@@ -38,7 +38,6 @@ Clojure notes. Gathered from links below and "Programming Clojure"
 ;; 8
 (defn z [a] (-> a x y))
 
-;; Collections
 ;; Lists
 
 (list 1 2)
@@ -128,7 +127,7 @@ Clojure notes. Gathered from links below and "Programming Clojure"
 (get {:chris 31} :chris 123)
 (get {:chris 31} :bob 123) ;; defaults to 123 when not found
 
-;; records
+; records
 
 (defrecord Person [first-name last-name])
 
@@ -136,6 +135,17 @@ Clojure notes. Gathered from links below and "Programming Clojure"
 ; this structure is also immutable
 (def x (->Person "Chris" "James"))
 (def x (Person. "Chris" "James"))
+
+; quoting is where you put a ` before a form.
+(def failed-movie-titles ["Gone With the Moving Air" "Swellfellas"])
+(def failed-languages ["Java", "PHP"])
+
+; the first example is giving clojure the symbol and it returns the object
+failed-movie-titles
+; below is quoting the symbol as a data-type and then evaluating it
+(eval `failed-movie-titles)
+; (first `failed-movie-titles) would fail as it's no longer a collection
+(first ['failed-movie-titles `failed-langiages]) ;will work
 
 ; State
 
@@ -179,11 +189,14 @@ Clojure notes. Gathered from links below and "Programming Clojure"
 ; if 
 (if true (println "YES!") (println "NO :("))
 
-; if you dont supply the else part (3rd arg) and the 1st arg resolves to false then it returns nil
+; if you dont supply the else part (3rd arg) and the 1st arg resolves to false then it returns nil. You can check for nil with nil?
+(nil? (if false 10))
 
 ; Side effects with do. do takes any number of forms and returns the last one
-
 (if true (do (println "yes") 123))
+
+; when is if without an else
+(when true (println "Howdy"))
 
 ; cond
 
