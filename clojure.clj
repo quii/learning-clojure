@@ -1,9 +1,3 @@
-(comment
-Clojure notes. Gathered from links in the readme and "Programming Clojure"
-)
-
-;; Strings
-
 (str "Hello, " "world" "!")
 
 ;; Calling functions is uniform compared to other languages with the list syntax, first argument is the function and the rest are arguments)
@@ -229,3 +223,16 @@ failed-movie-titles
 
 (defn ^{:tag String} shout [^{:tag String} s] (.toUpperCase s))
 ; (meta #`shout)
+
+
+; Macros
+(defn clock-add [& numbers] (mod (apply + numbers) 12))
+(clock-add 10 4)
+
+; Macros have to return a list
+(defmacro category-of-clocks [[op & rest]]
+  (conj rest `clock-add))
+
+; Macroexpand is really helpful for debugging macros
+(macroexpand `(category-of-clocks (+ 10 4)))
+(category-of-clocks (+ 10 4))
