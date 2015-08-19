@@ -1,5 +1,5 @@
 (comment
-Clojure notes. Gathered from links below and "Programming Clojure"
+Clojure notes. Gathered from links in the readme and "Programming Clojure"
 )
 
 ;; Strings
