@@ -227,12 +227,14 @@ failed-movie-titles
 
 ; Macros
 (defn clock-add [& numbers] (mod (apply + numbers) 12))
-(clock-add 10 4)
+(defn clock-minus [& numbers] (mod (apply - numbers) 12))
 
 ; Macros have to return a list
 (defmacro category-of-clocks [[op & rest]]
-  (conj rest `clock-add))
+  (conj rest
+        (case op + clock-add - clock-minus op)))
 
 ; Macroexpand is really helpful for debugging macros
 (macroexpand `(category-of-clocks (+ 10 4)))
 (category-of-clocks (+ 10 4))
+(category-of-clocks (- 4 6))
