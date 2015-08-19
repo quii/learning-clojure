@@ -232,9 +232,13 @@ failed-movie-titles
 ; Macros have to return a list
 (defmacro category-of-clocks [[op & rest]]
   (conj rest
-        (case op + clock-add - clock-minus op)))
+        (case op
+          + clock-add
+          - clock-minus
+          op)))
 
 ; Macroexpand is really helpful for debugging macros
 (macroexpand `(category-of-clocks (+ 10 4)))
-(category-of-clocks (+ 10 4))
-(category-of-clocks (- 4 6))
+
+(category-of-clocks (+ 10 4)) ; 10 o'clock plus 4 hours is 2 o'clock
+(category-of-clocks (- 4 6)) ; 4 o'clock minus 6 hours is 10 o'clock
