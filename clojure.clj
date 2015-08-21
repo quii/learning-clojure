@@ -1,5 +1,3 @@
-(str "Hello, " "world" "!")
-
 ;; Calling functions is uniform compared to other languages with the list syntax, first argument is the function and the rest are arguments)
 
 (= "boo", "bum")
