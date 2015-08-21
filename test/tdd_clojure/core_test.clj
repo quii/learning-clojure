@@ -51,10 +51,23 @@
 
 
 ; Collections
-
 (deftest using-apply "Apply 'splats' a sequence of elements into a set of arguments to a function. Not like map which applies a function to each element in a collection to return a new collection"
   (is (= 6 (apply + [1 2 3]))))
 
-; some todo
-; enable autocomplete by default
-; surely dont have to do this save compile run test malarky?
+
+; Macros is a neat feature of lisps and is enabled by the very uniform syntax and treating "code as data". A lot of the standard lib is built using macros
+
+; Macros have to return a list
+(defmacro category-of-idiots [[op & rest]]
+  (conj rest
+        (case op
+          + (fn [x & _] (- x 123))
+          - (fn [x & _] (+ x 42))
+          op)))
+
+(defmacro infixmaths [[x operator y]] (list operator x y))
+
+; Macroexpand is really helpful for debugging macros
+(macroexpand `(category-of-idiots (+ 10 4)))
+(macroexpand `(infixmaths (1 + 2)))
+(macroexpand `(when true "butts"))
