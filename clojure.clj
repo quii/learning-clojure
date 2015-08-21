@@ -1,29 +1,3 @@
-;; Lists
-(list 1 2)
-`(1 2)
-
-;; Sequences
-[20 30 40]
-(seq [10, 20])
-(= [1 2] (rest [0 1 2])) ;; for scala people, rest = tail
-
-(first [10 20 30])
-(first {:name "Chris" :age 10}) ; returns age, interestingly
-
-(second [10 20 30])
-(last [10 20 30])
-
-(cons 1 [2 3 4])
-(cons {:new-field "Blah"} {:x "y"})
-
-(next [1 2 3 4])
-
-(sorted-set 50 2 10 1)
-
-; these insert efficiently, for a list it will add to the beginning and for a vector the end
-(conj [1 2] 3 4)
-(into [1 2] [3 4])
-
 ;; Ranges
 
 (range 10)

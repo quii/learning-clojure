@@ -54,6 +54,24 @@
 (deftest using-apply "Apply 'splats' a sequence of elements into a set of arguments to a function. Not like map which applies a function to each element in a collection to return a new collection"
   (is (= 6 (apply + [1 2 3]))))
 
+(deftest sequences "You can chop up sequences how you'd expect"
+  (is (= [10 20] (rest [0 10 20])))
+  (is (= 10 (first [10 2 3])))
+  (is (= 10 (second [2 10 3])))
+  (is (= 10 (last [1 2 10])))
+  (is (= [2 3 4] (next [1 2 3 4]))))
+
+(deftest cons-sequences "Cons lets you stick things on the end of a collection" 
+  (is (= [1 2 3] (cons 1 [2 3]))))
+
+(deftest conj-collectons "Conj is like cons but adds to the start and returns a collection"
+  (is (= `(3 1 2) (conj `(1 2) 3)))
+  (is (= `(4 3 1 2) (conj `(1 2) 3 4))))
+
+(deftest into-collections "into adds collections together"
+  (is (= [1 2 3 4] (into [1 2] [3 4])))
+  (is (= {:a "x" :b "y"} (into {:a "x"} {:b "y"}))))
+
 
 ; Macros is a neat feature of lisps and is enabled by the very uniform syntax and treating "code as data". A lot of the standard lib is built using macros
 
