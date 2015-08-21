@@ -58,16 +58,15 @@
 ; Macros is a neat feature of lisps and is enabled by the very uniform syntax and treating "code as data". A lot of the standard lib is built using macros
 
 ; Macros have to return a list
-(defmacro category-of-idiots [[op & rest]]
+(defmacro stupid-maths [[op & rest]]
   (conj rest
         (case op
-          + (fn [x & _] (- x 123))
-          - (fn [x & _] (+ x 42))
+          + -
+          - +
           op)))
 
-(defmacro infixmaths [[x operator y]] (list operator x y))
+(defmacro infix [[x operator y]] (list operator x y))
 
 ; Macroexpand is really helpful for debugging macros
-(macroexpand `(category-of-idiots (+ 10 4)))
-(macroexpand `(infixmaths (1 + 2)))
 (macroexpand `(when true "butts"))
+
