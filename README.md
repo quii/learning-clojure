@@ -50,3 +50,17 @@ Given `(+ 1 2 3 4)` you can put the point (cursor) before 2 for example and type
 You can then "slup" an argument into the current paranthesis with `c-right arrow`. Doing left arrow will do the opposite
 
 https://github.com/georgek/paredit-cheatsheet/blob/master/paredit-cheatsheet.pdf?raw=true
+
+### Auto complete
+
+(global-company-mode)
+
+### Tests
+
+`m-x cider-run-tests` or `c-c ,` runs all tests for the current namespace
+
+It seems you have to run `c-c c-k` to compile the code first though. Surely that can be fixed
+
+### Other commands
+
+`m-.` will jump to symbol
