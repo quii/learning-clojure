@@ -12,6 +12,11 @@
   (testing "Concatenating strings"
     (is "Hello, world!" (str "Hello, " "world" "!"))))
 
+(def this-is-mutable (ref 1))
+
+(deftest state (testing  "Clojure is immutable by default but obviously it can be managed. The ref keyword makes a reference which can be mutated. @ or deref can get the value. To change it you use ref-set in conjunction with dosync which makes it a transaction to be thread safe"
+                 (is (= 2 (dosync (ref-set this-is-mutable 2))))))
+
 ; Functions
 
 (deftest functions "Calling functions is done by making a list where the first argument is the function you want to call. This is more consistent than non-lisps"
