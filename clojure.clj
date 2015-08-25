@@ -1,14 +1,3 @@
-;; Hashmaps
-
-(hash-map "a" 10, "b" 20)
-(hash-map "a" 10 "b" 20) ;; dont need commas, but good for readability
-(hash-map :chris 31 :ruth 30) ;; the : creates a symbol
-{:chris 31 :ruth 30} ;; more sugar
-
-({:a 10, :b 20, :c 30} :b) ;; 20
-(get {:chris 31} :chris 123)
-(get {:chris 31} :bob 123) ;; defaults to 123 when not found
-
 ; records
 
 (defrecord Person [first-name last-name])

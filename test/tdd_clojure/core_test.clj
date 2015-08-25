@@ -104,6 +104,11 @@
     (is (= [3 5] (map + [1 1] [2 4 5 6 7 7 8])))
     ))
 
+(deftest hashmaps "Hashmaps are defined as key value list, you can use commas for readability. :symbol defines a symbol which is nice for keys, but they can just be strings"
+  (let [my-map (hash-map :a "Chris" :b "Ruth") my-map-2 {:d "Jim" :e "Rob"}]
+    (is (= "Chris" (my-map :a)))
+    (is (= "A default value" (my-map-2 :wont-be-found "A default value")))))
+
 ; Macros is a neat feature of lisps and is enabled by the very uniform syntax and treating "code as data". A lot of the standard lib is built using macros
 
 ; Macros have to return a list
