@@ -96,7 +96,8 @@
   (let [
         add2 (fn [x] (+ 2 x))
         add3 (fn [x] (+ 3 x))]
-    (is (= [3 4 5] (map add2 [1 2 3]) ))
+    (is (= [3 4 5] (map add2 [1 2 3])))
+    (is (= [3 4] (map #(% 1) [add2 add3])))
     ))
 
 ; Macros is a neat feature of lisps and is enabled by the very uniform syntax and treating "code as data". A lot of the standard lib is built using macros
