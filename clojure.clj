@@ -1,12 +1,6 @@
 ; can take multiple collections, it passes them as two arguments to your function
 (map str `("a" "b") `("c" "d")) 
 
-; ... or even multiple functions!
-(def add2 #(+ % 2))
-(def add5 #(+ % 5))
-(defn add2And5 [numbers] (map #(% numbers) [add2 add5]))
-(add2And5 1) ;(3, 6)
-
 (mapcat #(list % %) `(1 2 3)) ;; flatmap - notice you need the "constructor" version of the collection creation
 
 (filter #(= "Ed" %) `("Chris" "Ed" "Rob")) ;; returns Ed
