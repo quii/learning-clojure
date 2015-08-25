@@ -1,26 +1,3 @@
-;; Ranges
-
-(range 10)
-(range 5 10)
-(range 0 10 3)
-
-(take 2 [1 2 3 4 5 6 7 8 9])
-(take 5 (iterate inc 1))
-
-; When repeat is called with one argument it returns a lazy infinite sequence
-(take 5 (repeat "Chris rules"))
-
-; If you define a second arg then it doesnt
-(repeat 5 10)
-
-; Cycle takes a collection and cycles through it infinitely
-(take 5 (cycle [1 2]))
-
-(interleave [1 2 3] ["A" "B" "C"])
-
-(interpose "," ["Chris" "Ruth" "Simon"])
-(apply str (interpose ", " ["Chris", "Ruth"]))
-
 ;; some more collection functions
 
 (drop-while #(< % 5) [3 4 5 6 7 8])

@@ -77,6 +77,18 @@
   (is (= [1 2 3 4] (into [1 2] [3 4])))
   (is (= {:a "x" :b "y"} (into {:a "x"} {:b "y"}))))
 
+(deftest range "Range creates things"
+  (is (= [0 1 2 3 4 5] (clojure.core/range 6)))
+  (is (= [1 2 3] (clojure.core/range 1 4)))
+  (is (= [0 3 6 9] (clojure.core/range 0 10 3))))
+
+(deftest take-and-repeat "Take allows you to take a number of elements from a collection, useful with lazy & infinite collections like 'repeat', 'cycle' and 'iterate'"
+  (is (= [:x :x] (take 2 (repeat :x))))
+  (is (= [1 2 3] (take 3 (iterate inc 1))))
+  (is (= [1 2 1] (take 3 (cycle [1 2])))))
+
+
+(defn ff [] (range 5))
 
 ; Macros is a neat feature of lisps and is enabled by the very uniform syntax and treating "code as data". A lot of the standard lib is built using macros
 
