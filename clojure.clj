@@ -51,34 +51,6 @@ failed-movie-titles
 ; java
 (def rnd (new java.util.Random))
 
- ; obvious in a way, '.' is a function on class instances
-(println (. rnd nextInt))
-
-; static calls
-(. Math PI)
-
-; if 
-(if true (println "YES!") (println "NO :("))
-
-; it's worth noting that if is a "special form" because it doesn't evaulate all it's arguments recursively like normal forms (i.e we dont print NO in this case
-
-; if you dont supply the else part (3rd arg) and the 1st arg resolves to false then it returns nil. You can check for nil with nil?
-(nil? (if false 10))
-
-; Side effects with do. do takes any number of forms and returns the last one
-(if true (do (println "yes") 123))
-
-; when is if without an else
-(when true (println "Howdy"))
-
-; this will return a function, just to show you can
-((or + -) 2 2 2 )
-
-; cond
-
-(let [x (fn [x]
-          (cond (= x 0) "is 0" (= x 1) "is 1" :else "is something else"))]
-  (x 1))
 
 ; loop works like let, establishing bindings and then evaulating expressions
 

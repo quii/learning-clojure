@@ -109,6 +109,25 @@
     (is (= "Chris" (my-map :a)))
     (is (= "A default value" (my-map-2 :wont-be-found "A default value")))))
 
+; if's nils and things
+
+(deftest side-effects "do returns the last form"
+  (is (= 2 (do (println "Side effect") 2))))
+
+(deftest ifff "if is a macro as it doesnt evaluate both sides, if you dont add an else then nil could be returned"
+  (is (= nil (if false 10))))
+
+(deftest calling-static-java "Calling java is done like so"
+  (is (= (. Math PI) (. Math PI))))
+
+(deftest cond-is-multiple-if "Dont confuse me with case"
+  (let [x :woo]
+    (is (= 10 (cond
+               (= x :woo) 10
+               (= x :boo) 20
+               (= x :foo) 30
+               )))))
+
 ; Macros is a neat feature of lisps and is enabled by the very uniform syntax and treating "code as data". A lot of the standard lib is built using macros
 
 ; Macros have to return a list
