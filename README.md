@@ -39,6 +39,10 @@ At the end of a line do `c-x c-e` to evaluate it in the repl
 
 `C-c C-k` compiles the clojure file in the repl
 
+`C-c M-i` inspects an expression, so you can see what sub forms do
+
+Interesting one in terms of "purity" is `C-c C-w` which evaluates the preceeding form and replaces it with it's result
+
 When you get some kind of stacktrace window you can get rid of it with `q`. If you want it back it will be in a buffer called `cider-error`
 
 ### Paredit

@@ -93,3 +93,6 @@
 ; Macroexpand is really helpful for debugging macros
 (macroexpand `(when true "butts"))
 
+; If you're using CIDER you can just use `C-c C-m`
+(when true "butts")
+
