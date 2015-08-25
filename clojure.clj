@@ -1,14 +1,3 @@
-;; some more collection functions
-
-(drop-while #(< % 5) [3 4 5 6 7 8])
-(every? #(< % 5) [1 2 3])
-(some even? [2 4 6])
-; see also not-every? not-any?
-
-
-(map #(str "Hello, " % "!") `("Chris" "Ed" "Rob"))
-(map (partial + 2) [1 2 3])
-
 ; can take multiple collections, it passes them as two arguments to your function
 (map str `("a" "b") `("c" "d")) 
 

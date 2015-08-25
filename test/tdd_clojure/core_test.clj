@@ -87,8 +87,10 @@
   (is (= [1 2 3] (take 3 (iterate inc 1))))
   (is (= [1 2 1] (take 3 (cycle [1 2])))))
 
-
-(defn ff [] (range 5))
+(deftest other-collection-goodies "For fun and profit, see also drop-while, not-every? and not-any?"
+  (is (= `(1 2 3) (take-while #(< % 4) (iterate inc 1))))
+  (is (= true (every? #(< % 5) [1 2 3])))
+  (is (= true (some even? [1 2 3 10]))))
 
 ; Macros is a neat feature of lisps and is enabled by the very uniform syntax and treating "code as data". A lot of the standard lib is built using macros
 
