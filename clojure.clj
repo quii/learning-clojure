@@ -1,19 +1,3 @@
-(mapcat #(list % %) `(1 2 3)) ;; flatmap - notice you need the "constructor" version of the collection creation
-
-(filter #(= "Ed" %) `("Chris" "Ed" "Rob")) ;; returns Ed
-
-(reduce + [1 2 3 4])
-
-;; Vectors
-
-[1 2 3]
-(vector 1 2 3 4)
-
-;; Sets 
-(set `(1 2 3))
-#{1 2 3}
-(conj #{1 2} 3) ;;conj adds to a set
-
 ;; Hashmaps
 
 (hash-map "a" 10, "b" 20)

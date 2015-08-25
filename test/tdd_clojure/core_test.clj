@@ -90,7 +90,9 @@
 (deftest other-collection-goodies "For fun and profit, see also drop-while, not-every? and not-any?"
   (is (= `(1 2 3) (take-while #(< % 4) (iterate inc 1))))
   (is (= true (every? #(< % 5) [1 2 3])))
-  (is (= true (some even? [1 2 3 10]))))
+  (is (= true (some even? [1 2 3 10])))
+  (is (= `("Ed") (filter #(= "Ed" %) `("Chris" "Ed" "Rob"))))
+  (is (= 10 (reduce + [1 2 3 4]))))
 
 (deftest map-collections "Map works how you'd expect, but it can take multiple collections or even multiple functions. When you do multiple collections the mapping function needs to be able to accept N number of arguments where N is number of collections"
   (let [
