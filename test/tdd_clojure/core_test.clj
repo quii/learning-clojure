@@ -92,6 +92,13 @@
   (is (= true (every? #(< % 5) [1 2 3])))
   (is (= true (some even? [1 2 3 10]))))
 
+(deftest map-collections "Map works how you'd expect, but it can take multiple collections or even multiple functions"
+  (let [
+        add2 (fn [x] (+ 2 x))
+        add3 (fn [x] (+ 3 x))]
+    (is (= [3 4 5] (map add2 [1 2 3]) ))
+    ))
+
 ; Macros is a neat feature of lisps and is enabled by the very uniform syntax and treating "code as data". A lot of the standard lib is built using macros
 
 ; Macros have to return a list
