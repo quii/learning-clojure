@@ -126,7 +126,9 @@
                (= x :woo) 10
                (= x :boo) 20
                (= x :foo) 30
+               :else "Some default"
                )))))
+
 
 ; Macros is a neat feature of lisps and is enabled by the very uniform syntax and treating "code as data". A lot of the standard lib is built using macros
 
