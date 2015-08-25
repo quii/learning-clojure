@@ -64,7 +64,8 @@
   (is (= 10 (first [10 2 3])))
   (is (= 10 (second [2 10 3])))
   (is (= 10 (last [1 2 10])))
-  (is (= [2 3 4] (next [1 2 3 4]))))
+  (is (= [2 3 4] (next [1 2 3 4])))
+  (is (= [1 2 4] (let [[x y _ z] [1 2 3 4 5]] [x y z]))))
 
 (deftest cons-sequences "Cons lets you stick things on the end of a collection" 
   (is (= [1 2 3] (cons 1 [2 3]))))
@@ -104,10 +105,14 @@
     (is (= [3 5] (map + [1 1] [2 4 5 6 7 7 8])))
     ))
 
-(deftest hashmaps "Hashmaps are defined as key value list, you can use commas for readability. :symbol defines a symbol which is nice for keys, but they can just be strings"
-  (let [my-map (hash-map :a "Chris" :b "Ruth") my-map-2 {:d "Jim" :e "Rob"}]
+(deftest hashmaps "Hashmaps are defined as key value list, you can use commas for readability. :symbol defines a symbol which is nice for keys, but they can just be strings. When writing functions you can destructure maps into the name you want and ignore fields you dont care about"
+  (let [
+        my-map (hash-map :a "Chris" :b "Ruth")
+        my-map-2 {:a "Jim" :b "Rob"}
+        my-func (fn [{name :a}] name)]
     (is (= "Chris" (my-map :a)))
-    (is (= "A default value" (my-map-2 :wont-be-found "A default value")))))
+    (is (= "A default value" (my-map-2 :wont-be-found "A default value")))
+    (is (= "Chris" (my-func my-map)))))
 
 ; if's nils and things
 
@@ -129,6 +134,11 @@
                :else "Some default"
                )))))
 
+; Recursion
+(deftest recursion "There's lots of interesting recursion stuff in clojure, i need to study it more. Here's one example that's not tail recursive, i think"
+  (is (= [5 4 3 2 1] (loop [result [] x 5]
+              (if (zero? x) result
+                  (recur (conj result x) (dec x)))))))
 
 ; Macros is a neat feature of lisps and is enabled by the very uniform syntax and treating "code as data". A lot of the standard lib is built using macros
 
