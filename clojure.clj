@@ -1,6 +1,3 @@
-; can take multiple collections, it passes them as two arguments to your function
-(map str `("a" "b") `("c" "d")) 
-
 (mapcat #(list % %) `(1 2 3)) ;; flatmap - notice you need the "constructor" version of the collection creation
 
 (filter #(= "Ed" %) `("Chris" "Ed" "Rob")) ;; returns Ed
