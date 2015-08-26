@@ -49,10 +49,8 @@
 (deftest function-arrity "Functions can have multiple arity"
   (is (= "One argument" (arrity "Hi"))))
 
-(deftest composition "You can compose functions with the -> symbol. In this case i am combining the functions which add 2 and 5 respectively and then passing 1 through them"
-  (is (= 8
-         (let [x (fn [a] (+ a 2)) y (fn [a] (+ a 5))]
-           (-> 1 x y)))))
+(deftest composition "Comp takes a function which takes variable args and applies it to the right most function first"
+    (is (= "16" ((comp str +) 8 8))))
 
 
 ; Collections
