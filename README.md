@@ -3,7 +3,7 @@
 This is my workflow for learning both emacs and clojure
 
 - All editing, git and repl work done in emacs
-- Learn snippets and execute them in repl, dumping what i find interesting into clojure.clj
+- Learn snippets and execute them in repl, then writing a test to describe what it does
 - Any wordy notes about clojure in here
 - A little every day is better than a lot every 2 weeks
 
