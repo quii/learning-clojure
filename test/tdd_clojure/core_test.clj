@@ -103,6 +103,14 @@
     (is (= [3 5] (map + [1 1] [2 4 5 6 7 7 8])))
     ))
 
+(deftest recursion-with-recur "Clojure only has one non-stack-consuming looping construct: recur"
+  (let [my-func (loop [x 5
+         result []]
+    (if (> x 0)
+      (recur (dec x) (conj result (+ 2 x)))
+      result))]
+    (is (= [7 6 5 4 3] my-func))))
+
 (deftest hashmaps "Hashmaps are defined as key value list, you can use commas for readability. :symbol defines a symbol which is nice for keys, but they can just be strings. When writing functions you can destructure maps into the name you want and ignore fields you dont care about"
   (let [
         my-map (hash-map :a "Chris" :b "Ruth")
