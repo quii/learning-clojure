@@ -123,10 +123,12 @@
   (let [
         my-map (hash-map :a "Chris" :b "Ruth")
         my-map-2 {:a "Jim" :b "Rob"}
+        nilly-map {:a nil}
         my-func (fn [{name :a}] name)]
     (is (= "Chris" (my-map :a)))
     (is (= "A default value" (my-map-2 :wont-be-found "A default value")))
-    (is (= "Chris" (my-func my-map)))))
+    (is (= "Chris" (my-func my-map)))
+    (is (= true (contains? nilly-map :a)) "Note contains doesnt care that the key holds a nil value")))
 
 ; if's nils and things
 
