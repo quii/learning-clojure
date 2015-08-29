@@ -52,6 +52,14 @@
 (deftest composition "Comp takes a function which takes variable args and applies it to the right most function first"
     (is (= "16" ((comp str +) 8 8))))
 
+(deftest rearranging "->> Allows you to rearrange your functions so that the first form is threaded through as the 3rd item (converted into a list if it isnt aready) into the first form, the result of which is passed to the 2nd form, etc. On the other hand -> sets it at the 2nd item "
+  (is (= "234"
+         (->> `(1 2 3) (map inc) (apply str))))
+  (is (= 5
+         (-> 4 (+ 1))))
+  (is (= 31
+         (let [data {:nested {:age 31 :eye-color "Blue"}}]
+           (-> data :nested :age)))))
 
 ; Collections
 (deftest using-apply "Apply 'splats' a sequence of elements into a set of arguments to a function. Not like map which applies a function to each element in a collection to return a new collection"
