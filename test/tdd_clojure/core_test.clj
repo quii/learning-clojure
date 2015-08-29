@@ -146,6 +146,9 @@
               (if (zero? x) result
                   (recur (conj result x) (dec x)))))))
 
+(deftest regex "Regex is easy enough.."
+  (is (= "ABC" (apply str (re-seq #"[A-Z]+" "bA1B3Ce ")))))
+
 ; Macros is a neat feature of lisps and is enabled by the very uniform syntax and treating "code as data". A lot of the standard lib is built using macros
 
 ; Macros have to return a list
