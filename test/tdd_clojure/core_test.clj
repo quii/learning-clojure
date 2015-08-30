@@ -78,11 +78,13 @@
 (deftest lists "Singly linked, grow at the front"
   (is (= `(3 1 2) (conj `(1 2) 3)))
   (is (= `(4 3 1 2) (conj `(1 2) 3 4)))
-  (is (= 2 (second `(1 2 3)))))
+  (is (= 2 (second `(1 2 3))))
+  (is (= 3 (nth `(1 2 3) 2))))
 
-(deftest sets "Yup"
+(deftest sets "All the collection things have constructor and macro versions to make them. You can use the set constructor which takes a vector"
   (let [some-set #{:a :b :c}]
-    (is (= some-set #{:a :b :c}))))
+    (is (= some-set #{:a :b :c}))
+    (is (= nil ((set [1 2 3]) 4)))))
 
 (deftest into-collections "into adds collections together"
   (is (= [1 2 3 4] (into [1 2] [3 4])))
