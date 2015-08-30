@@ -65,20 +65,24 @@
 (deftest using-apply "Apply 'splats' a sequence of elements into a set of arguments to a function. Not like map which applies a function to each element in a collection to return a new collection"
   (is (= 6 (apply + [1 2 3]))))
 
-(deftest sequences "You can chop up sequences how you'd expect"
+(deftest vectors "Indexable, grow at the end"
   (is (= [10 20] (rest [0 10 20])))
   (is (= 10 (first [10 2 3])))
   (is (= 10 (second [2 10 3])))
   (is (= 10 (last [1 2 10])))
   (is (= [2 3 4] (next [1 2 3 4])))
-  (is (= [1 2 4] (let [[x y _ z] [1 2 3 4 5]] [x y z]))))
+  (is (= [1 2 4] (let [[x y _ z] [1 2 3 4 5]] [x y z])))
+  (is (= [1 2 3] (conj [1 2] 3)))
+  )
 
-(deftest cons-sequences "Cons lets you stick things on the end of a collection" 
-  (is (= [1 2 3] (cons 1 [2 3]))))
-
-(deftest conj-collectons "Conj is like cons but adds to the start and returns a collection"
+(deftest lists "Singly linked, grow at the front"
   (is (= `(3 1 2) (conj `(1 2) 3)))
-  (is (= `(4 3 1 2) (conj `(1 2) 3 4))))
+  (is (= `(4 3 1 2) (conj `(1 2) 3 4)))
+  (is (= 2 (second `(1 2 3)))))
+
+(deftest sets "Yup"
+  (let [some-set #{:a :b :c}]
+    (is (= some-set #{:a :b :c}))))
 
 (deftest into-collections "into adds collections together"
   (is (= [1 2 3 4] (into [1 2] [3 4])))
@@ -101,7 +105,7 @@
   (is (= `("Ed") (filter #(= "Ed" %) `("Chris" "Ed" "Rob"))))
   (is (= 10 (reduce + [1 2 3 4]))))
 
-(deftest map-collections "Map works how you'd expect, but it can take multiple collections or even multiple functions. When you do multiple collections the mapping function needs to be able to accept N number of arguments where N is number of collections"
+(deftest map-collections "Map works how you'd expect, but it can take multiple collections or even multiple functions. When you do multiple collections the mapping function needs to be able to accept N number of arguments where N is number of collections. Hickey says they scale hugely"
   (let [
         add2 (fn [x] (+ 2 x))
         add3 (fn [x] (+ 3 x))]
