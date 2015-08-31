@@ -105,17 +105,22 @@
   (is (= true (every? #(< % 5) [1 2 3])))
   (is (= true (some even? [1 2 3 10])))
   (is (= `("Ed") (filter #(= "Ed" %) `("Chris" "Ed" "Rob"))))
-  (is (= 10 (reduce + [1 2 3 4]))))
+  (is (= 10 (reduce + [1 2 3 4])))
+  (is (= [1 2 3 4] (concat [1 2] [3 4]))))
 
-(deftest map-collections "Map works how you'd expect, but it can take multiple collections or even multiple functions. When you do multiple collections the mapping function needs to be able to accept N number of arguments where N is number of collections. Hickey says they scale hugely"
+
+(deftest map-collections "Map works how you'd expect, but it can take multiple collections or even multiple functions. When you do multiple collections the mapping function needs to be able to accept N number of arguments where N is number of collections. Hickey says they scale hugely. Map works with all collection types and returns a lazy **list**. The test seems to imply differently, but that's what clojure for the brave says? :S"
   (let [
         add2 (fn [x] (+ 2 x))
+        print-me (fn [x] (do (println (str "Hello, " x)) x))
         add3 (fn [x] (+ 3 x))]
+    (is (= [0 1] (take 2 (map print-me [0 1 2 3 4 5]))))
     (is (= [3 4 5] (map add2 [1 2 3])))
     (is (= [3 4] (map #(% 1) [add2 add3])))
     (is (= [3 5] (map + [1 1] [2 4])))
     (is (= [3 5] (map + [1 1] [2 4 5 6 7 7 8])))
     ))
+
 
 (deftest recursion-with-recur "Clojure only has one non-stack-consuming looping construct: recur"
   (let [my-func (loop [x 5
