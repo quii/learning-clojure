@@ -141,6 +141,10 @@
     (is (= "Chris" (my-func my-map)))
     (is (= true (contains? nilly-map :a)) "Note contains doesnt care that the key holds a nil value")))
 
+(deftest updating-maps "Update-in"
+  (let [x {:name "Chris" :age 31}]
+    (is (= {:name "Chris" :age 32} (update-in x [:age] inc)))))
+
 ; if's nils and things
 
 (deftest side-effects "do returns the last form"
