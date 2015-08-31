@@ -108,6 +108,9 @@
   (is (= 10 (reduce + [1 2 3 4])))
   (is (= [1 2 3 4] (concat [1 2] [3 4]))))
 
+(deftest partial-fun "Partial takes a function and args and returns you a new function"
+  (let [add-some-things (partial conj #{:b :c})]
+    (= #{:a :b :c}) (add-some-things #{:a})))
 
 (deftest map-collections "Map works how you'd expect, but it can take multiple collections or even multiple functions. When you do multiple collections the mapping function needs to be able to accept N number of arguments where N is number of collections. Hickey says they scale hugely. Map works with all collection types and returns a lazy **list**. The test seems to imply differently, but that's what clojure for the brave says? :S"
   (let [
