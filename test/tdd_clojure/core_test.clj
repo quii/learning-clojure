@@ -17,6 +17,9 @@
 (deftest state (testing  "Clojure is immutable by default but obviously it can be managed. The ref keyword makes a reference which can be mutated. @ or deref can get the value. To change it you use ref-set in conjunction with dosync which makes it a transaction to be thread safe"
                  (is (= 2 (dosync (ref-set this-is-mutable 2))))))
 
+(deftest including-files-namespaces-etc "This test is testing a function defined in src which further refers to an internal library, check the codes to see how"
+  (is (= 6 (a-cool-library-function 1))))
+
 ; Functions
 
 (deftest functions "Calling functions is done by making a list where the first argument is the function you want to call. This is more consistent than non-lisps"

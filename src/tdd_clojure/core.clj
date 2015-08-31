@@ -1,8 +1,8 @@
 (ns tdd-clojure.core)
 
-(defn foo
-  "I don't do a whole lot."
-  [x]
-  (println x "Hello, World!"))
+(require `tdd-clojure.some-lib.stuff) ; loads the file
+(refer `tdd-clojure.some-lib.stuff) ; loads the namespace into here so we dont have to fully qualify it
 
 (defn times2 [x] (do (println "Hello multiplier") (* x 2)))
+ 
+(defn a-cool-library-function [a] (my-library-adder a))

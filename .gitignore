@@ -2,3 +2,4 @@
 /.nrepl-port
 /target/
 /ChangeLog
+/src/tdd_clojure/some_lib/
