@@ -121,6 +121,11 @@
     (is (= [3 5] (map + [1 1] [2 4 5 6 7 7 8])))
     ))
 
+(deftest more-map-quirks "Map works by calling it's arguments with 'seq' to turn them into a sequence. This means you dont get a map back for instance if you do map. Clojure handily has an identity function (like CT yeah!) which just returns what you give in, which helps you prove this. You can use 'into' to put it back into the data-structure you want"
+  (let [my-map {:bums :willies}]
+    (is (= (seq my-map) (map identity my-map)))
+    (is (= my-map (into {} (map identity my-map))))))
+
 
 (deftest recursion-with-recur "Clojure only has one non-stack-consuming looping construct: recur"
   (let [my-func (loop [x 5
