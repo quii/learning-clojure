@@ -177,10 +177,24 @@
                )))))
 
 ; Recursion
-(deftest recursion "There's lots of interesting recursion stuff in clojure, i need to study it more. Here's one example that's not tail recursive, i think"
+(deftest recursion "There's lots of interesting recursion stuff in clojure, i need to study it more. You should use recur instead of calling the function itself for the recursive call as that will make it tail-recursive (if its in the tail position"
   (is (= [5 4 3 2 1] (loop [result [] x 5]
               (if (zero? x) result
                   (recur (conj result x) (dec x)))))))
+
+(deftest recur-with-when "When is like if but when you dont want an else. It also acts like a do (only last form returned). This is helpful for some recursive stuff "
+  (let [count-down (fn [x]
+                     (when (pos? x)
+                       (println (str "COUNT DOWN - " x))
+                       (recur (dec x))))
+        ]
+    (is (nil? (count-down 3)))))
+
+(deftest quoting-in-depth "When creating a list you will have seen `(1 2 3) to prevent the form being evalauted (1 is not a function). You might want to have *some* of a quoted form evaluated though, ~ allows you to unquote"
+  (is (= `(1 2 4) `(1 2 ~(+ 2 2)))))
+
+(deftest truthiness "In clojure every value is true unless it is false or nil. This means empty collections are true. The seq function takes a collection and will return nil if it is empty'"
+  (is (= true (when [] true))))
 
 (deftest regex "Regex is easy enough.."
   (is (= "ABC" (apply str (re-seq #"[A-Z]+" "bA1B3Ce ")))))
