@@ -194,7 +194,11 @@
   (is (= `(1 2 4) `(1 2 ~(+ 2 2)))))
 
 (deftest truthiness "In clojure every value is true unless it is false or nil. This means empty collections are true. The seq function takes a collection and will return nil if it is empty'"
-  (is (= true (when [] true))))
+  (let [bad-adder (fn [collection total]
+                (if (seq collection) (recur (rest collection) (+ total (first collection))) total))]
+    (is (= 6 (bad-adder [1 2 3] 0)) "This function sucks, better ways to do it but illustrates the pattern of using seq"))
+  (is (= true (when [] true)))
+  (is (nil? (seq []))))
 
 (deftest regex "Regex is easy enough.."
   (is (= "ABC" (apply str (re-seq #"[A-Z]+" "bA1B3Ce ")))))
