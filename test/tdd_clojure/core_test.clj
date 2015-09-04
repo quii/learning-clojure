@@ -101,9 +101,10 @@
   (is (= "foo" (val (first {:a "foo"}))) "key & val are convienience functions for nth 0 and 1")
   )
 
-(deftest lists "Singly linked, grow at the front"
+(deftest lists "Singly linked, grow at the front. Each node knows it's distance from the end. Elements can only be found by traversing from the start and you can only add/remove from the start. Usually you will prefer vectors as they're generally only used as Clojure code (like all the forms you see here!)"
   (is (= `(3 1 2) (conj `(1 2) 3)))
   (is (= `(4 3 1 2) (conj `(1 2) 3 4)))
+  (is (= `(3 1 2) (cons 3 `(1 2))) "Cons and conj add to the start of a list. Conj is the right (efficient) way")
   (is (= 2 (second `(1 2 3))))
   (is (= 3 (nth `(1 2 3) 2))))
 
