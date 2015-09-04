@@ -145,6 +145,10 @@
     (is (= (seq my-map) (map identity my-map)))
     (is (= my-map (into {} (map identity my-map))))))
 
+(deftest replacing-elements "Clojure collections are persistent, so you will get new collections when you do these things. Obviously it doesnt just take a big copy, it's fast, efficient and wizzy."
+  (let [my-collection [:1 :2 :3]]
+    (is (= [:1 :2 :4] (replace {:3 :4} my-collection)))))
+
 
 (deftest recursion-with-recur "Clojure only has one non-stack-consuming looping construct: recur"
   (let [my-func (loop [x 5
@@ -161,6 +165,7 @@
         nilly-map {:a nil}
         my-func (fn [{name :a}] name)]
     (is (= "Chris" (my-map :a)))
+    (is (= "Chris" (:a my-map)))
     (is (= "A default value" (my-map-2 :wont-be-found "A default value")))
     (is (= "Chris" (my-func my-map)))
     (is (= true (contains? nilly-map :a)) "Note contains doesnt care that the key holds a nil value")))
