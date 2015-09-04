@@ -24,6 +24,9 @@ This is my workflow for learning both emacs and clojure
 - "Redefine class to provide callback hooks for life-cycle events, for eg an event on creation"
 - "Millions of lines of code written around missing language features"
 
+EMBRACE THE REPLZ.
+
+`(find-doc "xor")` ftw
 
 ## Writing clojure in emacs
 
