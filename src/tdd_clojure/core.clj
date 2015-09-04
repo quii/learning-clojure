@@ -9,4 +9,4 @@
 
 (defn recursive-with-seq
   ([collection total] (if (seq collection) (recur (rest collection) (+ total (first collection))) total))
-  ([collection] (recursive-with-seqxb collection 0)))
+  ([collection] (recursive-with-seq collection 0)))
