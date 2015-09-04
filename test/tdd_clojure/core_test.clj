@@ -81,14 +81,24 @@
 (deftest using-apply "Apply 'splats' a sequence of elements into a set of arguments to a function. Not like map which applies a function to each element in a collection to return a new collection"
   (is (= 6 (apply + [1 2 3]))))
 
-(deftest vectors "Indexable, grow at the end"
+(deftest vectors "Indexable, grow at the end, indexed by number, immutable, persistent. Vectors cannot be added to any faster than 0(n). Vectors are efficient at adding/removing from the end, accessing/changing by index and walking in reverse order. Vectors are bad for inserting things in between, use a hashmap or sortedmap instead. Dont use as a queue because rest and next return seqs not vectors, to convert them back again will give you a performance penalty. Use PersistentQueue instead, funnily enough."
   (is (= [10 20] (rest [0 10 20])))
   (is (= 10 (first [10 2 3])))
   (is (= 10 (second [2 10 3])))
   (is (= 10 (last [1 2 10])))
+  (is (= 10 (nth [1 2 10] 2)))
+  (is (= [:a :b :d] (assoc [:a :b :c] 2 :d )) "assoc only works with indexes that exist..")
+  (is (= [:a :b :c :d] (assoc [:a :b :c] 3 :d)) "except if it is one index higher than the list, in which case it adds it to the end")
   (is (= [2 3 4] (next [1 2 3 4])))
   (is (= [1 2 4] (let [[x y _ z] [1 2 3 4 5]] [x y z])))
-  (is (= [1 2 3] (conj [1 2] 3)))
+  (is (= [1 2 3] (vec (range 1 4))))
+  (is (= [1 2 3] (into [1] [2 3])))
+  (is (= [1 2 3] (conj [1 2] 3)) "This is synonymous with push on a stack")
+  (is (= [1 2] (pop [1 2 3])) "And pop is pop, derp")
+  (is (= 3 (peek [1 2 3])) "This is like 'last' but slower and not consistent with stack terminology, so use this! (last walks down the collection)")
+  (is (= [1 2 3] (subvec (vec (range 1 10)) 0 3)))
+  (is (vector? (first {:a "foo" :b "baz"})) "Elements in maps are vectors (derived, actual type is MapEntry")
+  (is (= "foo" (val (first {:a "foo"}))) "key & val are convienience functions for nth 0 and 1")
   )
 
 (deftest lists "Singly linked, grow at the front"
