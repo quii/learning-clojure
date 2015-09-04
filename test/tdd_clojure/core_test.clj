@@ -42,7 +42,20 @@
   (is (= 20 (#(+ %1 %2) 15 5))))
 
 (defn greeting "Greets you" [name] (str "Hello, " name))
-; (doc greeting)
+; try (doc greeting)
+
+(deftest destructuring "This is sort of like pattern matching but obviously only positional based because dynamicness. Apparently it might be worth checking out core.match. This is preferable to OO style of creating classes to represent data, simply use maps and vectors to create these same abstractions in a more fluid (albeit less safe) way"
+  (let [
+        destruction-vector (fn [[first-name last-name & others :as full-list]] (str last-name " " first-name))
+        destruction-map (fn [{name :first-name :or {name "Anonymous"}}] (str "Hello, " name))
+        assoc-destructure (fn [{first-thing 0 third-thing 2}] [first-thing third-thing])
+        ]
+    (is (= "James Chris" (destruction-vector ["Chris" "James"])))
+    (is (= "Hello, Chris" (destruction-map {:last-name "James" :first-name "Chris" :age 31})))
+    (is (= "Hello, Anonymous" (destruction-map {:foo :bar})))
+    (is (= ["One" "Three"] (assoc-destructure ["One" "Two" "Three"])))
+    )
+  )
 
 (defn arrity
   ([x] "One argument")
