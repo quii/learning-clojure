@@ -56,6 +56,8 @@ Given `(+ 1 2 3 4)` you can put the point (cursor) before 2 for example and type
 
 You can then "slup" an argument into the current paranthesis with `c-right arrow`. Doing left arrow will do the opposite
 
+Moving between beginning and end of forms is with `C-M-f` (forward) and `C-M-b` (backward)
+
 https://github.com/georgek/paredit-cheatsheet/blob/master/paredit-cheatsheet.pdf?raw=true
 
 ### Auto complete
