@@ -111,7 +111,10 @@
 (deftest sets "All the collection things have constructor and macro versions to make them. You can use the set constructor which takes a vector"
   (let [some-set #{:a :b :c}]
     (is (= some-set #{:a :b :c}))
-    (is (= nil ((set [1 2 3]) 4)))))
+    (is (= nil ((set [1 2 3]) 4)))
+    (is (= :a (some-set :a)))
+    (is (= :not-found (get some-set :z :not-found)) "Advantage of using get is you can provide a default")
+    ))
 
 (deftest into-collections "into adds collections together"
   (is (= [1 2 3 4] (into [1 2] [3 4])))
