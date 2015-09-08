@@ -143,7 +143,7 @@
   (let [add-5-to-things (partial + 5)]
     (is (= 305 (add-5-to-things 100 200)))
     (is (= 15 (add-5-to-things 10)))
-    (is (= 15 (#(apply + 5 %&) 10))) "See how this is the equivalent of partial"))
+    (is (= 15 (#(apply + 5 %&) 10)) "See how this is the equivalent of partial")))
 
 (deftest map-collections "Map works how you'd expect, but it can take multiple collections or even multiple functions. When you do multiple collections the mapping function needs to be able to accept N number of arguments where N is number of collections. Hickey says they scale hugely. Map works with all collection types and returns a lazy **list**. The test seems to imply differently, but that's what clojure for the brave says? :S"
   (let [

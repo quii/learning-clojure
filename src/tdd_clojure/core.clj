@@ -10,3 +10,8 @@
 (defn recursive-with-seq
   ([collection total] (if (seq collection) (recur (rest collection) (+ total (first collection))) total))
   ([collection] (recursive-with-seq collection 0)))
+
+; need to see how this works, potentially cool though!
+(defn a-function-with-a-test-in-it
+  {:test (fn [] (assert (=(a-function-with-a-test-in-it) true)))}
+  [] (true))
