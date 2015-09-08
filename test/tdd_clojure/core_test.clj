@@ -134,6 +134,7 @@
   (is (= `(1 2 3) (take-while #(< % 4) (iterate inc 1))))
   (is (= true (every? #(< % 5) [1 2 3])))
   (is (= true (some even? [1 2 3 10])))
+  (is (= false ((complement even?) 2)) "completement takes a truthy function and returns the opposite version")
   (is (= `("Ed") (filter #(= "Ed" %) `("Chris" "Ed" "Rob"))))
   (is (= 10 (reduce + [1 2 3 4])))
   (is (= [1 2 3 4] (concat [1 2] [3 4]))))
@@ -141,7 +142,8 @@
 (deftest partial-fun "Partial takes a function and args and returns you a new function, it's worth bearing in mind that it applies the function to all arguments it gets"
   (let [add-5-to-things (partial + 5)]
     (is (= 305 (add-5-to-things 100 200)))
-    (is (= 15 (add-5-to-things 10)))))
+    (is (= 15 (add-5-to-things 10)))
+    (is (= 15 (#(apply + 5 %&) 10))) "See how this is the equivalent of partial"))
 
 (deftest map-collections "Map works how you'd expect, but it can take multiple collections or even multiple functions. When you do multiple collections the mapping function needs to be able to accept N number of arguments where N is number of collections. Hickey says they scale hugely. Map works with all collection types and returns a lazy **list**. The test seems to imply differently, but that's what clojure for the brave says? :S"
   (let [
