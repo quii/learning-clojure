@@ -36,3 +36,6 @@
   [data [key val]]
   (assoc data key (inc val))
   )
+
+(defn butt-adder [values] (apply (partial str "butt") values))
+
