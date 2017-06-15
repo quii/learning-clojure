@@ -15,3 +15,5 @@
 (defn a-function-with-a-test-in-it
   {:test (fn [] (assert (=(a-function-with-a-test-in-it) true)))}
   [] (true))
+
+(def sum #(reduce + %))

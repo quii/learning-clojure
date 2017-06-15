@@ -236,6 +236,8 @@
 (deftest regex "Regex is easy enough.."
   (is (= "ABC" (apply str (re-seq #"[A-Z]+" "bA1B3Ce ")))))
 
+(deftest my-sum "Some function i made"
+(is (= 6 (sum [1 2 3]))))
 ; Macros is a neat feature of lisps and is enabled by the very uniform syntax and treating "code as data". A lot of the standard lib is built using macros
 
 ; Macros have to return a list
