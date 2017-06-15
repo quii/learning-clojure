@@ -53,7 +53,9 @@
   )
 
 (deftest function-arrity "Functions can have multiple arity"
-  (is (= "One argument" (arrity "Hi"))))
+  (is (= "One argument" (arrity "Hi")))
+  (is (= "Two arguments" (arrity "Hi" :chris)))
+  )
 
 (deftest composition "Comp takes a function which takes variable args and applies it to the right most function first"
     (is (= "16" ((comp str +) 8 8))))

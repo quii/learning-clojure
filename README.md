@@ -48,6 +48,8 @@ Interesting one in terms of "purity" is `C-c C-w` which evaluates the preceeding
 
 When you get some kind of stacktrace window you can get rid of it with `q`. If you want it back it will be in a buffer called `cider-error`
 
+`C-M-\` reformats selected region (`C-SPACE` to mark regions)
+
 ### Paredit
 
 A minor mode which closes the lisp parenthesis. There are key bindings to navigate through them
