@@ -25,8 +25,6 @@
 (deftest functions "Calling functions is done by making a list where the first argument is the function you want to call. This is more consistent than non-lisps"
   (is (= false (= "BUM" "bum"))))
 
-(defn add-five [x] (+ x 5))
-
 (deftest creatingfunctions "defn Is like def from scala. It will be public to this namespace"
   (is (= 15 (add-five 10))))
 
@@ -41,9 +39,6 @@
 (deftest fn-sugar-more-args "And like _.1 _.2 in scala you can do..."
   (is (= 20 (#(+ %1 %2) 15 5))))
 
-(defn greeting "Greets you" [name] (str "Hello, " name))
-; try (doc greeting)
-
 (deftest destructuring "This is sort of like pattern matching but obviously only positional based because dynamicness. Apparently it might be worth checking out core.match. This is preferable to OO style of creating classes to represent data, simply use maps and vectors to create these same abstractions in a more fluid (albeit less safe) way"
   (let [
         destruction-vector (fn [[first-name last-name & others :as full-list]] (str last-name " " first-name))
@@ -56,11 +51,6 @@
     (is (= ["One" "Three"] (assoc-destructure ["One" "Two" "Three"])))
     )
   )
-
-(defn arrity
-  ([x] "One argument")
-  ([x y] "Two arguments")
-  ([x y & otherargs] "More than 2 arguments"))
 
 (deftest function-arrity "Functions can have multiple arity"
   (is (= "One argument" (arrity "Hi"))))

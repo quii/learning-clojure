@@ -17,3 +17,17 @@
   [] (true))
 
 (def sum #(reduce + %))
+
+(def avg #(/ (sum %) (count %)))
+
+(defn stats [numbers] (map #(% numbers) [sum count avg]))
+
+(defn add-five [x] (+ x 5))
+
+(defn greeting "Greets you" [name] (str "Hello, " name))
+; try (doc greeting)
+
+(defn arrity
+  ([x] "One argument")
+  ([x y] "Two arguments")
+  ([x y & otherargs] "More than 2 arguments"))
