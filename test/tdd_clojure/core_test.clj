@@ -60,9 +60,6 @@
 (deftest composition "Comp takes a function which takes variable args and applies it to the right most function first"
     (is (= "16" ((comp str +) 8 8))))
 
-
-      
-
 (deftest rearranging "->> Allows you to rearrange your functions so that the first form is threaded through as the 3rd item (converted into a list if it isnt aready) into the first form, the result of which is passed to the 2nd form, etc. On the other hand -> sets it at the 2nd item "
   (is (= "234"
          (->> `(1 2 3) (map inc) (apply str))))
@@ -254,6 +251,12 @@
 (deftest reduce-fun "In this example reduce treets a map as a sequence of vectors ([k1 v1] [k2, v2] and applies the function creating a new map (the empty map argument"
   (is (= {:max 21 :min 10} (reduce map-incrementer {} {:max 20 :min 9})))
 )
+
+(deftest the-reader "The reader, reads your code and puts it into a list for evaluating"
+  (let [my-form "(+ 1 2)"]
+    (is (= '(+ 1 2) (read-string my-form)))
+    (is (= 3 (eval (read-string my-form))))
+))
 
 ; Macros have to return a list
 (defmacro stupid-maths [[op & rest]]
