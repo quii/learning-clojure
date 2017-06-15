@@ -39,3 +39,14 @@
 
 (defn butt-adder [values] (apply (partial str "butt") values))
 
+(require '[clojure.string :as s])
+(defn clean 
+  [text]
+  (s/replace (s/trim text)  #"lol" "LOL")
+)
+
+(defn sleepy [x] (Thread/sleep 1000) x)
+(def memo-sleepy 
+  "Memoize will save function return values based on args"
+  (memoize sleepy)
+)
