@@ -50,3 +50,8 @@
   "Memoize will save function return values based on args"
   (memoize sleepy)
 )
+
+(defmacro infix [[x operator y]] (list operator x y))
+
+(defn add2 [x] (+ 2 x))
+(defn add3 [x] (+ 3 x))

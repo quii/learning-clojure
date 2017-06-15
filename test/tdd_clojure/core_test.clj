@@ -67,7 +67,9 @@
          (-> 4 (+ 1))))
   (is (= 31
          (let [data {:nested {:age 31 :eye-color "Blue"}}]
-           (-> data :nested :age)))))
+           (-> data :nested :age))))
+  (is (= 10 (-> 5 add3 add2)))
+)
 
 ; Collections
 (deftest using-apply "Apply 'splats' a sequence of elements into a set of arguments to a function. Not like map which applies a function to each element in a collection to return a new collection"
@@ -258,6 +260,10 @@
     (is (= 3 (eval (read-string my-form))))
 ))
 
+(deftest my-infix-macro "The macro 'infix' lets you do maths like so"
+  (is (= 5 (infix (3 + 2))))
+)
+
 ; Macros have to return a list
 (defmacro stupid-maths [[op & rest]]
   (conj rest
@@ -266,7 +272,6 @@
           - +
           op)))
 
-(defmacro infix [[x operator y]] (list operator x y))
 
 ; Macroexpand is really helpful for debugging macros
 (macroexpand `(when true "butts"))
