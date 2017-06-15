@@ -232,6 +232,10 @@
 (is (= 6 (sum [1 2 3]))))
 ; Macros is a neat feature of lisps and is enabled by the very uniform syntax and treating "code as data". A lot of the standard lib is built using macros
 
+(deftest reduce-fun "In this example reduce treets a map as a sequence of vectors ([k1 v1] [k2, v2] and applies the function creating a new map (the empty map argument"
+  (is (= {:max 21 :min 10} (reduce map-incrementer {} {:max 20 :min 9})))
+)
+
 ; Macros have to return a list
 (defmacro stupid-maths [[op & rest]]
   (conj rest

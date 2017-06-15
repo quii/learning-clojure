@@ -32,3 +32,7 @@
   ([x y] "Two arguments")
   ([x y & otherargs] "More than 2 arguments"))
 
+(defn map-incrementer 
+  [data [key val]]
+  (assoc data key (inc val))
+  )
