@@ -112,7 +112,7 @@
   (is (= [1 2 3 4] (into [1 2] [3 4])))
   (is (= {:a "x" :b "y"} (into {:a "x"} {:b "y"}))))
 
-(deftest range "Range creates things"
+(deftest range-to-create "Range creates things"
   (is (= [0 1 2 3 4 5] (clojure.core/range 6)))
   (is (= [1 2 3] (clojure.core/range 1 4)))
   (is (= [0 3 6 9] (clojure.core/range 0 10 3))))
@@ -130,6 +130,11 @@
   (is (= `("Ed") (filter #(= "Ed" %) `("Chris" "Ed" "Rob"))))
   (is (= 10 (reduce + [1 2 3 4])))
   (is (= [1 2 3 4] (concat [1 2] [3 4]))))
+
+(deftest sort-stuff "sort hurrah"
+(is (= [1 2 3] (sort [3 1 2])))
+(is (= ["c" "bb" "aaa"] (sort-by count ["aaa" "c" "bb"])))
+)
 
 (deftest partial-fun "Partial takes a function and args and returns you a new function, it's worth bearing in mind that it applies the function to all arguments it gets"
   (let [add-5-to-things (partial + 5)]
