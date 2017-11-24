@@ -48,9 +48,20 @@
     (is (= "James Chris" (destruction-vector ["Chris" "James"])))
     (is (= "Hello, Chris" (destruction-map {:last-name "James" :first-name "Chris" :age 31})))
     (is (= "Hello, Anonymous" (destruction-map {:foo :bar})))
-    (is (= ["One" "Three"] (assoc-destructure ["One" "Two" "Three"])))
-    )
-  )
+    (is (= ["One" "Three"] (assoc-destructure ["One" "Two" "Three"])))))
+
+(deftest more-map-destructuring "Pick the keys you like"
+  (let [pick-keys (fn [{:keys [a b]}] (+ a b))]
+    (is (= 4 (pick-keys {:a 2 :b 2 :c 5})))))
+
+(deftest map-destructure-keep-old-ones-too ":as lets you retain the original (this works with list destructuring too)"
+                                           (let [pick-keys (fn [{:keys [a b] :as stuff}] stuff)]
+                                             (is (= {:a 1 :b 2 :c 3} (pick-keys {:a 1 :b 2 :c 3})))))
+
+(deftest map-destructure-defaults "you can set defaults with :or"
+                                  (let [pick-keys (fn [{:keys [a b] :or {b 10}}] (+ a b))]
+                                    (is (= 15 (pick-keys {:a 10 :b 5})))
+                                    (is (= 15 (pick-keys {:a 5})))))
 
 (deftest function-arrity "Functions can have multiple arity"
   (is (= "One argument" (arrity "Hi")))
