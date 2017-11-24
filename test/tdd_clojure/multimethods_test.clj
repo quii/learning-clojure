@@ -5,6 +5,6 @@
 (deftest dispatch
                   (testing "dispatching to known values"
                     (is (= "bark" (shout {:animal :dog}))))
-                  
+
                   (testing "to unknown values"
                     (is (= "wtf" (shout {:animal :alien})))))
