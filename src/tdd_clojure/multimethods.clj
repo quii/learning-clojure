@@ -7,3 +7,27 @@
 (defmethod shout :dog [_] "bark")
 
 (defmethod shout :default [_] "wtf")
+
+
+;; rock paper scissors fun
+
+;; express rules nicely!
+
+(def hands [:paper :rock :scissors])
+
+(defmulti beats? vector)
+(defmethod beats? [:paper :rock] [_ _] true)
+(defmethod beats? [:scissors :paper] [_ _] true)
+(defmethod beats? [:rock :scissors] [_ _] true)
+(defmethod beats? :default [_ _] false)
+
+(defn draw [] (first (shuffle hands)))
+
+(defn print-game [[player cpu]]
+  (println (clojure.string/join " " ["You did" player "cpu did" cpu])))
+
+(defn play []
+  (let [player-hand (draw) cpu-hand (draw)]
+    (do
+      (print-game [player-hand cpu-hand])
+      (beats? player-hand cpu-hand))))
