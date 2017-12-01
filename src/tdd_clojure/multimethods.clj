@@ -31,3 +31,9 @@
     (do
       (print-game [player-hand cpu-hand])
       (beats? player-hand cpu-hand))))
+
+;; multimethods with functions
+
+(defmulti my-add (fn [a b] [(type a) (type b)]))            ;; dont quite get the syntax here..
+(defmethod my-add [Integer Integer] ([a b] (+ a b)))
+(defmethod my-add [String String] ([a b] (str a b)))

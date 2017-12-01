@@ -7,4 +7,7 @@
                     (is (= "bark" (shout {:animal :dog}))))
 
                   (testing "to unknown values"
-                    (is (= "wtf" (shout {:animal :alien})))))
+                    (is (= "wtf" (shout {:animal :alien}))))
+
+                  (testing "functiony ones"
+                    (is (= "Hello, world" (my-add "Hello, " "world")))))
