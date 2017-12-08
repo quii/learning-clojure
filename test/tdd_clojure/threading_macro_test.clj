@@ -12,3 +12,7 @@
                            (is (= "hello, world" (->> "world" (str "hello, "))))
                            (is (= "worldhello, " (-> "world" (str "hello, "))))
                            (is (= "234" (->> [1 2 3] (map inc) (apply str)))))
+
+(deftest some-macro "used for when nil is returned by any step, the further steps are not executed, (rather than an NPE or other weird behaviour)"
+                    (is (= 34 (some-> {:name "Chris" :age 33} :age inc)))
+                    (is (= nil (some-> {:name "Chris"} :age inc ))))
