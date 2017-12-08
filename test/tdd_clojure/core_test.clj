@@ -28,11 +28,6 @@
 (deftest creatingfunctions "defn Is like def from scala. It will be public to this namespace"
   (is (= 15 (add-five 10))))
 
-(deftest let-and-fn "Let allows you define values (includes functions obvs) that are only in scope for the proceeding function"
-  (is true
-      (let [is-5 (fn [x] (= x 5))]
-        (is-5 5))))
-
 (deftest fn-sugar "There is some syntactic sugar for writing anonymous functions"
   (is (= 20 (#(* % 10) 2))))
 
@@ -71,16 +66,6 @@
 (deftest composition "Comp takes a function which takes variable args and applies it to the right most function first"
     (is (= "16" ((comp str +) 8 8))))
 
-(deftest rearranging "->> Allows you to rearrange your functions so that the first form is threaded through as the 3rd item (converted into a list if it isnt aready) into the first form, the result of which is passed to the 2nd form, etc. On the other hand -> sets it at the 2nd item "
-  (is (= "234"
-         (->> `(1 2 3) (map inc) (apply str))))
-  (is (= 5
-         (-> 4 (+ 1))))
-  (is (= 31
-         (let [data {:nested {:age 31 :eye-color "Blue"}}]
-           (-> data :nested :age))))
-  (is (= 10 (-> 5 add3 add2)))
-)
 
 ; Collections
 (deftest using-apply "Apply 'splats' a sequence of elements into a set of arguments to a function. Not like map which applies a function to each element in a collection to return a new collection"
