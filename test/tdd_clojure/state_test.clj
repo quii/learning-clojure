@@ -13,3 +13,12 @@
                         reset (fn [key atom old new] (if (> new 2) (reset! atom 0)))]
                     (is (= 0 (do (add-watch x :key reset) (swap! x inc) (swap! x inc) (swap! x inc) @x)))))
 
+;; refs - transactional.
+
+(deftest refs "Do transactions using ref-set. Refs can _only_ be changed inside a transaction"
+              (let [my-val (ref 0)
+                    number-changes (ref 0)
+                    update (fn [new] (dosync
+                               (ref-set my-val new)
+                               (ref-set number-changes (inc @number-changes))))]
+                (is (= 2 (do (update 10) (update 20) @number-changes)))))
