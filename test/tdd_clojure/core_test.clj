@@ -12,11 +12,6 @@
   (testing "Concatenating strings"
     (is "Hello, world!" (str "Hello, " "world" "!"))))
 
-(def this-is-mutable (ref 1))
-
-(deftest state (testing  "Clojure is immutable by default but obviously it can be managed. The ref keyword makes a reference which can be mutated. @ or deref can get the value. To change it you use ref-set in conjunction with dosync which makes it a transaction to be thread safe"
-                 (is (= 2 (dosync (ref-set this-is-mutable 2))))))
-
 (deftest including-files-namespaces-etc "This test is testing a function defined in src which further refers to an internal library, check the codes to see how. Remember in emacs with cider it's M+. to jump to symbol"
   (is (= 6 (a-cool-library-function 1))))
 
