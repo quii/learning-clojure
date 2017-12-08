@@ -14,5 +14,7 @@
                            (is (= "234" (->> [1 2 3] (map inc) (apply str)))))
 
 (deftest some-macro "used for when nil is returned by any step, the further steps are not executed, (rather than an NPE or other weird behaviour)"
-                    (is (= 34 (some-> {:name "Chris" :age 33} :age inc)))
-                    (is (= nil (some-> {:name "Chris"} :age inc ))))
+                    (let [data-with-age {:age 33} data-without-age {:name "Chris"}]
+                      (is (= 34 (some-> data-with-age :age inc)))
+                      (is (= nil (some-> data-without-age :age inc)))
+                      (is (thrown? Exception (-> data-without-age :age inc)))))
