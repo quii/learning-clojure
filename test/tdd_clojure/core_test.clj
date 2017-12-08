@@ -210,7 +210,8 @@
 
 (deftest updating-maps "Update-in"
   (let [x {:name "Chris" :age 31}]
-    (is (= {:name "Chris" :age 32} (update-in x [:age] inc)))))
+    (is (= {:name "Chris" :age 32} (update-in x [:age] inc)))
+    (is (= {:name "Chris" :age 33} (assoc x :age 33)))))
 
 ; if's nils and things
 
