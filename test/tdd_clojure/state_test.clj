@@ -21,4 +21,4 @@
                     update (fn [new] (dosync
                                (ref-set my-val new)
                                (ref-set number-changes (inc @number-changes))))]
-                (is (= 2 (do (update 10) (update 20) @number-changes)))))
+                (is (= {:final-val-state 20 :updates 2} (do (update 10) (update 20) {:final-val-state @my-val :updates @number-changes})))))
