@@ -5,3 +5,4 @@
 /.idea/
 tdd-clojure.iml
 .idea
+.DS_Store
