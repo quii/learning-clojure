@@ -167,6 +167,11 @@
   (let [my-collection [:1 :2 :3]]
     (is (= [:1 :2 :4] (replace {:3 :4} my-collection)))))
 
+(deftest identity-demo "simple example of identity"
+  (is (= 1 (identity 1)))
+  (is (= [1 2 3] (map identity [1 2 3])))
+)
+
 
 (deftest recursion-with-recur "Clojure only has one non-stack-consuming looping construct: recur"
   (let [my-func (loop [x 5
